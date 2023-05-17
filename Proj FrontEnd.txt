@@ -21,6 +21,10 @@ npx create-next-app@latest introducao --use-npm --example https://github.com/ver
 npx create-next-app@latest introducao(Tudo "não" e no final Enter)
 npm install react-bootstrap bootstrap(Site: https://react-bootstrap.github.io/)
 npm i axios
+npm install react-icons
+npm install react-hook-form(Site: https://react-hook-form.com/ -> Get Started)
+npm install firebase
+npm install uuid
 
 //EXTENSÃO VSCODE
 ES7 React/Redux/React-Native snippets
