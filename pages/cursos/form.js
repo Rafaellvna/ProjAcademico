@@ -1,14 +1,19 @@
 import Pagina from '@/components/Pagina'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 
 function form() {
-
+  
+  const {push} = useRouter()
   const { register, handleSubmit } = useForm()
-
-  function salvar(dados){
-    console.log(dados)
+  
+  function salvar(dados) {
+    const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
+    cursos.push(dados)
+    window.localStorage.setItem('cursos', JSON.stringify(cursos))
+    push('/cursos')
   }
 
   return (
