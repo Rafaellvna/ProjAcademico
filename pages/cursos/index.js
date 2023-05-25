@@ -43,7 +43,7 @@ function index() {
                     {cursos.map((item, i) => (
                         <tr key={i}>
                             <td>
-                                <Link href={'/cursos' + i}>
+                                <Link href={'/cursos/' + i}>
                                     <BsFillPencilFill className="me-2 text-primary" />
                                 </Link>
                                 <AiOutlineDelete onClick={() => excluir(i)} />

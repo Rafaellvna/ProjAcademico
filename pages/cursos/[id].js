@@ -22,16 +22,17 @@ function form() {
       const cursos = getAll()
       const curso = cursos[query.id]
 
-      setValue('nome', curso.nome)
-      setValue('duracao', curso.duracao)
-      setValue('modalidade', curso.modalidade)
+      for(let atributo in curso){
+        setValue(atributo, curso[atributo])
+      }
     }
 
   }, [query.id])
 
   function salvar(dados) {
     const cursos = getAll()
-    cursos.push(dados)
+    //cursos.push(dados)
+    cursos.splice(query.id, 1, dados)
     window.localStorage.setItem('cursos', JSON.stringify(cursos))
     push('/cursos')
   }
