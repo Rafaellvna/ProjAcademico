@@ -10,13 +10,23 @@ function index() {
 
     const [disciplinas, setDisciplinas] = useState([])
 
-    
-
     useEffect(() => {
-        axios.get('/api/disciplinas').then(resultado => {
+        getAll()
+    }, [])
+
+    function getAll() {
+        return axios.get('/api/disciplinas').then(resultado => {
             setDisciplinas(resultado.data)
         })
-    }, [])
+    }
+
+    function excluir(id) {
+        if (confirm('Deseja realmente excluir o registro?')) {
+            axios.delete('/api/disciplinas/' + id)
+            getAll()
+        }
+    }
+
 
     return (
         <Pagina titulo="Disciplinas">
@@ -31,13 +41,13 @@ function index() {
                     </tr>
                 </thead>
                 <tbody>
-                    {disciplinas.map((item, i) => (
-                        <tr key={i}>
+                    {disciplinas.map((item) => (
+                        <tr key={item.id}>
                             <td>
-                                <Link href={'/disciplinas/' + i}>
+                                <Link href={'/disciplinas/' + item.id}>
                                     <BsFillPencilFill className="me-2 text-primary" />
                                 </Link>
-                                <AiOutlineDelete onClick={() => excluir(i)} />
+                                <AiOutlineDelete onClick={() => excluir(item.id)} />
                             </td>
                             <td>{item.nome}</td>
                             <td>{item.cursos}</td>
