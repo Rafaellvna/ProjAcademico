@@ -10,7 +10,7 @@ import { IoMdArrowRoundBack } from 'react-icons/io'
 function form() {
 
   const { push } = useRouter()
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, formState: {errors} } = useForm()
 
   function salvar(dados) {
     const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
@@ -19,18 +19,34 @@ function form() {
     push('/cursos')
   }
 
+  const validatorNome = {
+    required: 'O campo é obrigatório',
+    minLength: {
+      value: 3,
+      message: 'A quantidade de caracteres mínima é 3'
+    },
+    maxLength: {
+      value: 10,
+      message: 'A quantidade de caracteres máxima é 10'
+    }
+  }
+
   return (
     <Pagina titulo="Formulário">
 
       <Form>
         <Form.Group className="mb-3" controlId="nome">
           <Form.Label><strong>Nome: </strong></Form.Label>
-          <Form.Control type="text" {...register('nome')} />
+          <Form.Control type="text" {...register('nome', validatorNome)} />
+          {
+            errors.nome &&
+            <small>{errors.nome.message}</small>
+          }
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="duracao">
           <Form.Label><strong>Duração: </strong></Form.Label>
-          <Form.Control type="text" {...register('duracao')} />
+          <Form.Control type="text" {...register('duracao', {required: true})} />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="modalidade">
