@@ -6,6 +6,7 @@ import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { IoMdArrowRoundBack } from 'react-icons/io'
+import cursoValidator from '@/validators/cursoValidator'
 
 function form() {
 
@@ -19,25 +20,13 @@ function form() {
     push('/cursos')
   }
 
-  const validatorNome = {
-    required: 'O campo é obrigatório',
-    minLength: {
-      value: 3,
-      message: 'A quantidade de caracteres mínima é 3'
-    },
-    maxLength: {
-      value: 10,
-      message: 'A quantidade de caracteres máxima é 10'
-    }
-  }
-
   return (
     <Pagina titulo="Formulário">
 
       <Form>
         <Form.Group className="mb-3" controlId="nome">
           <Form.Label><strong>Nome: </strong></Form.Label>
-          <Form.Control type="text" {...register('nome', validatorNome)} />
+          <Form.Control isInvalid={erros.nome} type="text" {...register('nome', cursoValidator.nome)} />
           {
             errors.nome &&
             <small>{errors.nome.message}</small>
@@ -46,12 +35,20 @@ function form() {
 
         <Form.Group className="mb-3" controlId="duracao">
           <Form.Label><strong>Duração: </strong></Form.Label>
-          <Form.Control type="text" {...register('duracao', {required: true})} />
+          <Form.Control isInvalid={erros.duracao} type="text" {...register('duracao', cursoValidator.duracao)} />
+          {
+            errors.nome &&
+            <small>{errors.duracao.message}</small>
+          }
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="modalidade">
           <Form.Label><strong>Modalidade: </strong></Form.Label>
-          <Form.Control type="text" {...register('modalidade')} />
+          <Form.Control isInvalid={erros.modalidade} type="text" {...register('modalidade', cursoValidator.modalidade)} />
+          {
+            errors.nome &&
+            <small>{errors.modalidade.message}</small>
+          }
         </Form.Group>
 
         <div className='text-center'>
