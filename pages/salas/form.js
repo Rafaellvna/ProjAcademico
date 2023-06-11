@@ -6,11 +6,12 @@ import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { IoMdArrowRoundBack } from 'react-icons/io'
+import salasValidator from '@/validators/salasValidator'
 
 function form() {
 
   const { push } = useRouter()
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, formState: {errors} } = useForm()
 
   function salvar(dados) {
     const salas = JSON.parse(window.localStorage.getItem('salas')) || []
@@ -25,17 +26,29 @@ function form() {
       <Form>
         <Form.Group className="mb-3" controlId="nome">
           <Form.Label><strong>Nome: </strong></Form.Label>
-          <Form.Control type="text" {...register('nome')} />
+          <Form.Control isInvalid={erros.nome} type="text" {...register('nome', salasValidator.nome)} />
+          {
+            errors.nome &&
+            <small>{errors.nome.message}</small>
+          }
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="capacidade">
           <Form.Label><strong>Capacidade: </strong></Form.Label>
-          <Form.Control type="number" {...register('capacidade')} />
+          <Form.Control isInvalid={erros.capacidade} type="number" {...register('capacidade', salasValidator.capacidade)} />
+          {
+            errors.capacidade &&
+            <small>{errors.capacidade.message}</small>
+          }
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="tipo">
           <Form.Label><strong>Tipo: </strong></Form.Label>
-          <Form.Control type="text" {...register('tipo')} />
+          <Form.Control isInvalid={erros.tipo} type="text" {...register('tipo', salasValidator.tipo)} />
+          {
+            errors.tipo &&
+            <small>{errors.tipo.message}</small>
+          }
         </Form.Group>
 
         <div className='text-center'>

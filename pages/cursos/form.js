@@ -37,7 +37,7 @@ function form() {
           <Form.Label><strong>Duração: </strong></Form.Label>
           <Form.Control isInvalid={erros.duracao} type="text" {...register('duracao', cursoValidator.duracao)} />
           {
-            errors.nome &&
+            errors.duracao &&
             <small>{errors.duracao.message}</small>
           }
         </Form.Group>
@@ -46,7 +46,7 @@ function form() {
           <Form.Label><strong>Modalidade: </strong></Form.Label>
           <Form.Control isInvalid={erros.modalidade} type="text" {...register('modalidade', cursoValidator.modalidade)} />
           {
-            errors.nome &&
+            errors.modalidade &&
             <small>{errors.modalidade.message}</small>
           }
         </Form.Group>

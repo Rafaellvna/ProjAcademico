@@ -7,11 +7,12 @@ import { Button, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { IoMdArrowRoundBack } from 'react-icons/io'
+import disciplinasValidator from '@/validators/disciplinasValidator'
 
 function form() {
 
   const { push } = useRouter()
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, formState: {errors} } = useForm()
 
   function salvar(dados) {
     axios.post('/api/disciplinas', dados)
@@ -24,12 +25,20 @@ function form() {
       <Form>
         <Form.Group className="mb-3" controlId="nome">
           <Form.Label><strong>Nome: </strong></Form.Label>
-          <Form.Control type="text" {...register('nome')} />
+          <Form.Control isInvalid={erros.nome} type="text" {...register('nome', disciplinasValidator.nome)} />
+          {
+            errors.nome &&
+            <small>{errors.nome.message}</small>
+          }
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="cursos">
           <Form.Label><strong>Cursos: </strong></Form.Label>
-          <Form.Control type="text" {...register('cursos')} />
+          <Form.Control isInvalid={erros.cursos} type="text" {...register('cursos', disciplinasValidator.cursos)} />
+          {
+            errors.cursos &&
+            <small>{errors.cursos.message}</small>
+          }
         </Form.Group>
 
         <div className='text-center'>
