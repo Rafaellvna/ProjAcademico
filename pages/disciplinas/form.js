@@ -25,7 +25,7 @@ function form() {
       <Form>
         <Form.Group className="mb-3" controlId="nome">
           <Form.Label><strong>Nome: </strong></Form.Label>
-          <Form.Control isInvalid={erros.nome} type="text" {...register('nome', disciplinasValidator.nome)} />
+          <Form.Control isInvalid={errors.nome} type="text" {...register('nome', disciplinasValidator.nome)} />
           {
             errors.nome &&
             <small>{errors.nome.message}</small>
@@ -34,7 +34,7 @@ function form() {
 
         <Form.Group className="mb-3" controlId="cursos">
           <Form.Label><strong>Cursos: </strong></Form.Label>
-          <Form.Control isInvalid={erros.cursos} type="text" {...register('cursos', disciplinasValidator.cursos)} />
+          <Form.Control isInvalid={errors.cursos} type="text" {...register('cursos', disciplinasValidator.cursos)} />
           {
             errors.cursos &&
             <small>{errors.cursos.message}</small>

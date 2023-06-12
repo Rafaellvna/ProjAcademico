@@ -26,7 +26,7 @@ function form() {
       <Form>
         <Form.Group className="mb-3" controlId="nome">
           <Form.Label><strong>Nome: </strong></Form.Label>
-          <Form.Control isInvalid={erros.nome} type="text" {...register('nome', professoresValidator.nome)} />
+          <Form.Control isInvalid={errors.nome} type="text" {...register('nome', professoresValidator.nome)} />
           {
             errors.nome &&
             <small>{errors.nome.message}</small>
@@ -35,7 +35,7 @@ function form() {
 
         <Form.Group className="mb-3" controlId="cpf">
           <Form.Label><strong>CPF: </strong></Form.Label>
-          <Form.Control isInvalid={erros.cpf} type="text" {...register('cpf', professoresValidator.cpf)} />
+          <Form.Control isInvalid={errors.cpf} type="text" {...register('cpf', professoresValidator.cpf)} />
           {
             errors.cpf &&
             <small>{errors.cpf.message}</small>
@@ -44,7 +44,7 @@ function form() {
 
         <Form.Group className="mb-3" controlId="matricula">
           <Form.Label><strong>Matrícula: </strong></Form.Label>
-          <Form.Control isInvalid={erros.matricula} type="text" {...register('matricula', professoresValidator.matricula)} />
+          <Form.Control isInvalid={errors.matricula} type="text" {...register('matricula', professoresValidator.matricula)} />
           {
             errors.matricula &&
             <small>{errors.matricula.message}</small>
@@ -53,7 +53,7 @@ function form() {
         
         <Form.Group className="mb-3" controlId="salario">
           <Form.Label><strong>Salário: </strong></Form.Label>
-          <Form.Control isInvalid={erros.salario} type="text" {...register('salario', professoresValidator.salario)} />
+          <Form.Control isInvalid={errors.salario} type="text" {...register('salario', professoresValidator.salario)} />
           {
             errors.salario &&
             <small>{errors.salario.message}</small>
@@ -62,7 +62,7 @@ function form() {
         
         <Form.Group className="mb-3" controlId="email">
           <Form.Label><strong>Email: </strong></Form.Label>
-          <Form.Control isInvalid={erros.email} type="email" {...register('email', professoresValidator.email)} />
+          <Form.Control isInvalid={errors.email} type="email" {...register('email', professoresValidator.email)} />
           {
             errors.email &&
             <small>{errors.email.message}</small>
@@ -71,7 +71,7 @@ function form() {
         
         <Form.Group className="mb-3" controlId="telefone">
           <Form.Label><strong>Telefone: </strong></Form.Label>
-          <Form.Control isInvalid={erros.telefone} type="text" {...register('telefone', professoresValidator.telefone)} />
+          <Form.Control isInvalid={errors.telefone} type="text" {...register('telefone', professoresValidator.telefone)} />
           {
             errors.telefone &&
             <small>{errors.telefone.message}</small>
@@ -80,7 +80,7 @@ function form() {
         
         <Form.Group className="mb-3" controlId="cep">
           <Form.Label><strong>CEP: </strong></Form.Label>
-          <Form.Control isInvalid={erros.cep} type="text" {...register('cep', professoresValidator.cep)} />
+          <Form.Control isInvalid={errors.cep} type="text" {...register('cep', professoresValidator.cep)} />
           {
             errors.cep &&
             <small>{errors.cep.message}</small>
@@ -89,7 +89,7 @@ function form() {
         
         <Form.Group className="mb-3" controlId="logradouro">
           <Form.Label><strong>Logradouro: </strong></Form.Label>
-          <Form.Control isInvalid={erros.logradouro} type="text" {...register('logradouro', professoresValidator.logradouro)} />
+          <Form.Control isInvalid={errors.logradouro} type="text" {...register('logradouro', professoresValidator.logradouro)} />
           {
             errors.logradouro &&
             <small>{errors.logradouro.message}</small>
@@ -98,7 +98,7 @@ function form() {
         
         <Form.Group className="mb-3" controlId="complemento">
           <Form.Label><strong>Complemento: </strong></Form.Label>
-          <Form.Control isInvalid={erros.complemento} type="text" {...register('complemento', professoresValidator.complemento)} />
+          <Form.Control isInvalid={errors.complemento} type="text" {...register('complemento', professoresValidator.complemento)} />
           {
             errors.complemento &&
             <small>{errors.complemento.message}</small>
@@ -107,7 +107,7 @@ function form() {
         
         <Form.Group className="mb-3" controlId="numero">
           <Form.Label><strong>Número: </strong></Form.Label>
-          <Form.Control isInvalid={erros.numero} type="number" {...register('numero', professoresValidator.numero)} />
+          <Form.Control isInvalid={errors.numero} type="number" {...register('numero', professoresValidator.numero)} />
           {
             errors.numero &&
             <small>{errors.numero.message}</small>
@@ -116,7 +116,7 @@ function form() {
         
         <Form.Group className="mb-3" controlId="bairro">
           <Form.Label><strong>Bairro: </strong></Form.Label>
-          <Form.Control isInvalid={erros.bairro} type="text" {...register('bairro', professoresValidator.bairro)} />
+          <Form.Control isInvalid={errors.bairro} type="text" {...register('bairro', professoresValidator.bairro)} />
           {
             errors.bairro &&
             <small>{errors.bairro.message}</small>

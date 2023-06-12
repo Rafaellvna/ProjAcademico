@@ -26,7 +26,7 @@ function form() {
       <Form>
         <Form.Group className="mb-3" controlId="nome">
           <Form.Label><strong>Nome: </strong></Form.Label>
-          <Form.Control isInvalid={erros.nome} type="text" {...register('nome', salasValidator.nome)} />
+          <Form.Control isInvalid={errors.nome} type="text" {...register('nome', salasValidator.nome)} />
           {
             errors.nome &&
             <small>{errors.nome.message}</small>
@@ -35,7 +35,7 @@ function form() {
 
         <Form.Group className="mb-3" controlId="capacidade">
           <Form.Label><strong>Capacidade: </strong></Form.Label>
-          <Form.Control isInvalid={erros.capacidade} type="number" {...register('capacidade', salasValidator.capacidade)} />
+          <Form.Control isInvalid={errors.capacidade} type="number" {...register('capacidade', salasValidator.capacidade)} />
           {
             errors.capacidade &&
             <small>{errors.capacidade.message}</small>
@@ -44,7 +44,7 @@ function form() {
 
         <Form.Group className="mb-3" controlId="tipo">
           <Form.Label><strong>Tipo: </strong></Form.Label>
-          <Form.Control isInvalid={erros.tipo} type="text" {...register('tipo', salasValidator.tipo)} />
+          <Form.Control isInvalid={errors.tipo} type="text" {...register('tipo', salasValidator.tipo)} />
           {
             errors.tipo &&
             <small>{errors.tipo.message}</small>

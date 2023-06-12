@@ -26,7 +26,7 @@ function form() {
       <Form>
         <Form.Group className="mb-3" controlId="nome">
           <Form.Label><strong>Nome: </strong></Form.Label>
-          <Form.Control isInvalid={erros.nome} type="text" {...register('nome', semestresValidator.nome)} />
+          <Form.Control isInvalid={errors.nome} type="text" {...register('nome', semestresValidator.nome)} />
           {
             errors.nome &&
             <small>{errors.nome.message}</small>
@@ -35,7 +35,7 @@ function form() {
 
         <Form.Group className="mb-3" controlId="dtinicio">
           <Form.Label><strong>Data Início: </strong></Form.Label>
-          <Form.Control isInvalid={erros.dtinicio} type="date" {...register('dtinicio', semestresValidator.dtinicio)} />
+          <Form.Control isInvalid={errors.dtinicio} type="date" {...register('dtinicio', semestresValidator.dtinicio)} />
           {
             errors.dtinicio &&
             <small>{errors.dtinicio.message}</small>
@@ -44,7 +44,7 @@ function form() {
 
         <Form.Group className="mb-3" controlId="dtfim">
           <Form.Label><strong>Data Fim: </strong></Form.Label>
-          <Form.Control isInvalid={erros.dtfim} type="date" {...register('dtfim', semestresValidator.dtfim)} />
+          <Form.Control isInvalid={errors.dtfim} type="date" {...register('dtfim', semestresValidator.dtfim)} />
           {
             errors.dtfim &&
             <small>{errors.dtfim.message}</small>
