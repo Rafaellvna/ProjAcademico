@@ -25,6 +25,7 @@ npm install react-icons
 npm install react-hook-form(Site: https://react-hook-form.com/ -> Get Started)
 npm install firebase
 npm install uuid
+npm install remask
 
 //EXTENSÃO VSCODE
 ES7 React/Redux/React-Native snippets
