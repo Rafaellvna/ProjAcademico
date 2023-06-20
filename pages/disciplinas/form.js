@@ -8,15 +8,23 @@ import { useForm } from 'react-hook-form'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import disciplinasValidator from '@/validators/disciplinasValidator'
+import { mask } from 'remask'
 
 function form() {
 
   const { push } = useRouter()
-  const { register, handleSubmit, formState: {errors} } = useForm()
+  const { register, handleSubmit, formState: {errors}, setValue } = useForm()
 
   function salvar(dados) {
     axios.post('/api/disciplinas', dados)
     push('/disciplinas')
+  }
+
+  function handleChange(event) {
+    const name = event.target.name
+    const value = event.target.value
+    const mascara = event.target.getAttribute('mask')
+    setValue(name, mask(value, mascara))
   }
 
   return (

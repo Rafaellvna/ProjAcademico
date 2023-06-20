@@ -7,17 +7,25 @@ import { useForm } from 'react-hook-form'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import salasValidator from '@/validators/salasValidator'
+import { mask } from 'remask'
 
 function form() {
 
   const { push } = useRouter()
-  const { register, handleSubmit, formState: {errors} } = useForm()
+  const { register, handleSubmit, formState: {errors}, setValue } = useForm()
 
   function salvar(dados) {
     const salas = JSON.parse(window.localStorage.getItem('salas')) || []
     salas.push(dados)
     window.localStorage.setItem('salas', JSON.stringify(salas))
     push('/salas')
+  }
+
+  function handleChange(event) {
+    const name = event.target.name
+    const value = event.target.value
+    const mascara = event.target.getAttribute('mask')
+    setValue(name, mask(value, mascara))
   }
 
   return (
@@ -35,7 +43,7 @@ function form() {
 
         <Form.Group className="mb-3" controlId="capacidade">
           <Form.Label><strong>Capacidade: </strong></Form.Label>
-          <Form.Control isInvalid={errors.capacidade} type="number" {...register('capacidade', salasValidator.capacidade)} />
+          <Form.Control isInvalid={errors.capacidade} type="number" mask="999" {...register('capacidade', salasValidator.capacidade)} onChange={handleChange} />
           {
             errors.capacidade &&
             <small>{errors.capacidade.message}</small>

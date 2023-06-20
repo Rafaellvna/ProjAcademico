@@ -7,17 +7,25 @@ import { useForm } from 'react-hook-form'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import semestresValidator from '@/validators/semestresValidator'
+import { mask } from 'remask'
 
 function form() {
 
   const { push } = useRouter()
-  const { register, handleSubmit, formState: {errors} } = useForm()
+  const { register, handleSubmit, formState: {errors}, setValue } = useForm()
 
   function salvar(dados) {
     const semestres = JSON.parse(window.localStorage.getItem('semestres')) || []
     semestres.push(dados)
     window.localStorage.setItem('semestres', JSON.stringify(semestres))
     push('/semestres')
+  }
+
+  function handleChange(event) {
+    const name = event.target.name
+    const value = event.target.value
+    const mascara = event.target.getAttribute('mask')
+    setValue(name, mask(value, mascara))
   }
 
   return (
@@ -35,7 +43,7 @@ function form() {
 
         <Form.Group className="mb-3" controlId="dtinicio">
           <Form.Label><strong>Data Início: </strong></Form.Label>
-          <Form.Control isInvalid={errors.dtinicio} type="date" {...register('dtinicio', semestresValidator.dtinicio)} />
+          <Form.Control isInvalid={errors.dtinicio} type="date" mask="99/99/9999" {...register('dtinicio', semestresValidator.dtinicio)} onChange={handleChange} />
           {
             errors.dtinicio &&
             <small>{errors.dtinicio.message}</small>
@@ -44,7 +52,7 @@ function form() {
 
         <Form.Group className="mb-3" controlId="dtfim">
           <Form.Label><strong>Data Fim: </strong></Form.Label>
-          <Form.Control isInvalid={errors.dtfim} type="date" {...register('dtfim', semestresValidator.dtfim)} />
+          <Form.Control isInvalid={errors.dtfim} type="date" mask="99/99/9999" {...register('dtfim', semestresValidator.dtfim)} onChange={handleChange} />
           {
             errors.dtfim &&
             <small>{errors.dtfim.message}</small>

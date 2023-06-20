@@ -7,17 +7,25 @@ import { useForm } from 'react-hook-form'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { IoMdArrowRoundBack } from 'react-icons/io'
 import cursoValidator from '@/validators/cursoValidator'
+import { mask } from 'remask'
 
 function form() {
 
   const { push } = useRouter()
-  const { register, handleSubmit, formState: {errors} } = useForm()
+  const { register, handleSubmit, formState: {errors}, setValue } = useForm()
 
   function salvar(dados) {
     const cursos = JSON.parse(window.localStorage.getItem('cursos')) || []
     cursos.push(dados)
     window.localStorage.setItem('cursos', JSON.stringify(cursos))
     push('/cursos')
+  }
+
+  function handleChange(event) {
+    const name = event.target.name
+    const value = event.target.value
+    const mascara = event.target.getAttribute('mask')
+    setValue(name, mask(value, mascara))
   }
 
   return (
@@ -35,7 +43,7 @@ function form() {
 
         <Form.Group className="mb-3" controlId="duracao">
           <Form.Label><strong>Duração: </strong></Form.Label>
-          <Form.Control isInvalid={errors.duracao} type="text" {...register('duracao', cursoValidator.duracao)} />
+          <Form.Control isInvalid={errors.duracao} type="text" mask="99" {...register('duracao', cursoValidator.duracao)} onChange={handleChange} />
           {
             errors.duracao &&
             <small>{errors.duracao.message}</small>
@@ -44,7 +52,7 @@ function form() {
 
         <Form.Group className="mb-3" controlId="modalidade">
           <Form.Label><strong>Modalidade: </strong></Form.Label>
-          <Form.Control isInvalid={errors.modalidade} type="text" {...register('modalidade', cursoValidator.modalidade)} />
+          <Form.Control isInvalid={errors.modalidade} type="text" mask="AAAAAAAAAA" {...register('modalidade', cursoValidator.modalidade)} onChange={handleChange} />
           {
             errors.modalidade &&
             <small>{errors.modalidade.message}</small>
